@@ -1,13 +1,16 @@
 import express from "express";
+import dotenv from 'dotenv';
 import cors from 'cors';
-import Router from './routes/routes.js'
+import fruitRoutes from './routes/fruitRouter';
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
-app.use(Router);
+app.use('/fruit', fruitRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
